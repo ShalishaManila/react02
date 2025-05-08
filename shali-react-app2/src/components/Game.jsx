@@ -15,20 +15,22 @@ const Game = () => {
       setApiGender(apiData.gender);
     } catch (error) {
       console.error("Error getting data:", error);
+      setApiGender("API Error");
     }
   };
   const fetchGender = (e) => {
     e.preventDefault();
     nameinput.length > 0 ? fetchAPI(nameinput) : setApiGender("");
   };
-  useEffect( () =>{
-    nameinput.length > 0 ? setResult(nameinput.concat(" is ", apigender)): setResult("");
-  },[apigender]
-  );
+  useEffect(() => {
+    nameinput.length > 0
+      ? setResult(nameinput.concat(" is ", apigender))
+      : setResult("");
+  }, [apigender]);
   return (
     <>
       <div className="container">
-        <Card className="text-left">
+        <Card className="text-left shadow p-3 mb-5 bg-white rounded">
           <Card.Title>
             <h2 className="text-uppercase text-center mb-5">
               Welcome to Name Game
