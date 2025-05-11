@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, Button, Form, Row, Col, FloatingLabel } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Game = () => {
+  const navigate = useNavigate();
   const [nameinput, setNameInput] = useState("");
   const [apigender, setApiGender] = useState("");
   const [result, setResult] = useState("");
@@ -27,6 +29,10 @@ const Game = () => {
       ? setResult(nameinput.concat(" is ", apigender))
       : setResult("");
   }, [apigender]);
+  const handleLogout = () => {
+    localStorage.removeItem("loggedin");
+    navigate("/login");
+  };
   return (
     <>
       <div className="container">
@@ -67,6 +73,13 @@ const Game = () => {
               </Form.Group>
               <Form.Group></Form.Group>
             </Form>
+            <button
+              onClick={handleLogout}
+              type="submit"
+              className="btn btn-success btn-block btn-sm text-white"
+            >
+              Logout
+            </button>
           </Card.Body>
         </Card>
       </div>
